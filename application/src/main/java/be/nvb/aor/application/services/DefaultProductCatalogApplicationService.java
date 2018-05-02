@@ -39,7 +39,7 @@ public class DefaultProductCatalogApplicationService implements ProductCatalogAp
 
     @Override
     public ProductCatalogView findProductCatalogById(String supplierId, String productCatalogId) {
-        ProductCatalog productCatalog = productCatalogRepository.findById(productCatalogId);
+        ProductCatalog productCatalog = productCatalogRepository.findOne(productCatalogId);
         ProductCatalogView productCatalogView = modelMapper.map(productCatalog, ProductCatalogView.class);
         return addProducts(supplierId, productCatalogView);
     }
@@ -67,7 +67,7 @@ public class DefaultProductCatalogApplicationService implements ProductCatalogAp
 
     @Override
     public void deleteProductCatalog(String supplierId, String productCatalogId) {
-        productCatalogRepository.delete(productCatalogRepository.findById(productCatalogId));
+        productCatalogRepository.delete(productCatalogRepository.findOne(productCatalogId));
     }
 
     @Override
@@ -77,7 +77,7 @@ public class DefaultProductCatalogApplicationService implements ProductCatalogAp
 
     @Override
     public ProductView findProductById(String supplierId, String productCatalogId, String productId) {
-        Product product = productRepository.findById(productId);
+        Product product = productRepository.findOne(productId);
 
         return modelMapper.map(product, ProductView.class);
     }

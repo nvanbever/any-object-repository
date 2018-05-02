@@ -26,7 +26,7 @@ public class DefaultSupplierApplicationService implements SupplierApplicationSer
 
     @Override
     public SupplierView addContact(String supplierId, PersonView contact) {
-        Supplier supplier = supplierRepository.findById(supplierId);
+        Supplier supplier = supplierRepository.findOne(supplierId);
 
         supplier.addContact(modelMapper.map(contact, Person.class));
 

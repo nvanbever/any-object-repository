@@ -28,7 +28,7 @@ public class DefaultProductApplicationService implements ProductApplicationServi
 
     @Override
     public ProductView findProductById(String productId) {
-        Product product = productRepository.findById(productId);
+        Product product = productRepository.findOne(productId);
 
         return modelMapper.map(product, ProductView.class);
     }
