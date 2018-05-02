@@ -1,0 +1,7 @@
+jar {
+    baseName = "application"
+}
+
+dependencies {
+    compile project(':domain:model')
+}

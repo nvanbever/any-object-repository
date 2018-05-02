@@ -1,0 +1,4 @@
+include 'domain:model', 'application', 'infrastructure'
+
+rootProject.name = 'any-object-repository'
+

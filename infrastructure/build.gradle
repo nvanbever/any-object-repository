@@ -1,0 +1,8 @@
+jar {
+    baseName = "infrastructure"
+}
+
+dependencies {
+    compile project(':domain:model')
+    compile project(':application')
+}

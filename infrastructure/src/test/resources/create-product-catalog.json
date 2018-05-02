@@ -1,0 +1,15 @@
+{
+  "name": "castles",
+  "description": "Luchtkastelen",
+  "supplierId": "58370ce3-d247-4b76-9b9a-13ade4939589",
+  "productCatalogDetailsClassName": "be.nvb.aor.application.view.CastleCatalogDetailsView",
+  "details": {
+    "assets": [
+      {
+        "name": "ZlNiGOdVzaFOSRobchgSK",
+        "caption": "noe",
+        "type": "PDF"
+      }
+    ]
+  }
+}

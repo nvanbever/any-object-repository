@@ -1,0 +1,88 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE"
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+apply plugin: "org.springframework.boot"
+
+dependencies {
+    compile project (":infrastructure")
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    group = "be.nvb.aor"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url "http://repo.opensourceagility.com/release/" }
+    }
+
+    dependencies {
+        compile ("com.amazonaws:aws-lambda-java-core:1.1.0")
+        compile ("com.amazonaws:aws-java-sdk-dynamodb:1.11.189")
+        compile ("com.amazonaws:aws-lambda-java-log4j:1.0.0")
+
+        compile ("com.amazonaws.serverless:aws-serverless-java-container-spark:[0.8,)")
+
+        compile ("com.fasterxml.jackson.core:jackson-core:2.9.0")
+        compile ("com.fasterxml.jackson.core:jackson-annotations:2.9.0")
+        compile ("com.fasterxml.jackson.core:jackson-databind:2.9.0")
+
+        compile ("ma.glasnost.orika:orika-core:1.5.1")
+
+        compile ("commons-lang:commons-lang:2.2")
+
+        testCompile ("io.github.benas:random-beans:3.7.0")
+
+        testCompile ("junit:junit:4.12")
+
+        testCompile ("org.assertj:assertj-core:3.9.1")
+    }
+
+    sourceSets {
+        main {
+            output.classesDir = file("$buildDir/classes")
+            output.resourcesDir = file("$buildDir/classes")
+        }
+        test {
+            output.classesDir = file("$buildDir/test-classes")
+            output.resourcesDir = file("$buildDir/test-classes")
+        }
+    }
+
+    configurations {
+        all*.exclude module: "slf4j-simple"
+    }
+
+}
+
+shadowJar {
+    dependencies {
+        exclude(dependency("org.slf4j:slf4j-simple:1.7.21"))
+    }
+}
+
+springBoot {
+    mainClass = "be.nvb.aor.Main"
+}
